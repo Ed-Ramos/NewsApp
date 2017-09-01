@@ -69,7 +69,7 @@ public class ArticleActivity extends AppCompatActivity implements LoaderManager.
                 Article currentArticle = mAdapter.getItem(position);
 
                 // Convert the String URL into a URI object (to pass into the Intent constructor)
-                Uri articleUri = Uri.parse(currentArticle.getUrl());
+                Uri articleUri = Uri.parse(currentArticle.getWebUrl());
 
                 // Create a new intent to view the article URI
                 Intent websiteIntent = new Intent(Intent.ACTION_VIEW, articleUri);
@@ -113,7 +113,7 @@ public class ArticleActivity extends AppCompatActivity implements LoaderManager.
 
 
     @Override
-    public Loader<List<Earthquake>> onCreateLoader(int i, Bundle bundle) {
+    public Loader<List<Article>> onCreateLoader(int i, Bundle bundle) {
         // Create a new loader for the given URL
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         String maxPages = sharedPrefs.getString(
