@@ -81,12 +81,23 @@ public final class QueryUtils {
                 // Extract the value for the key called "webUrl"
                 String webUrl = currentArticle.getString("webUrl");
 
+                String webPublicationDate;
+
+                if (currentArticle.has("webPublicationDate")) {
+
+                    webPublicationDate = currentArticle.getString("webPublicationDate");
+
+
+                } else {
+
+                    webPublicationDate = " Unknown";
+                }
 
                 // Create a new {@link Article} object with the webtitle and sectionName
                 // from the JSON response.
-                Article article = new Article(webTitle, sectionName, webUrl);
+                Article article = new Article(webTitle, sectionName, webUrl, webPublicationDate);
 
-                // Add the new {@link Book} to the list of books.
+                // Add the new {@link Article} to the list of articles.
                 articles.add(article);
 
                 } //End of articleResultsArray iteration

@@ -37,15 +37,22 @@ public class ArticleAdapter extends ArrayAdapter<Article> {
 
         String articleTitle = currentArticle.getWebTitle();
         String articleSection = currentArticle.getSectionName();
+        String articleDate = currentArticle.getWebPublicationDate();
 
         // Find the TextView in the book_list_item_item.xml layout with the ID book_title_text_view
         TextView ArticleTitleTextView = (TextView) listItemView.findViewById(R.id.article_title_text_view);
 
-        // Find the TextView in the book_list_item.xml layout with the ID book_author_text_view
+        // Find the TextView in the article_list_item.xml layout with the ID article_section_text_view
         TextView ArticleSectionTextView = (TextView) listItemView.findViewById(R.id.article_section_text_view);
 
+        // Find the TextView in the article_list_item.xml layout with the ID article_date_text_view
+        TextView ArticleDateTextView = (TextView) listItemView.findViewById(R.id.article_date_text_view);
+
+
+
         ArticleTitleTextView.setText(articleTitle);
-        ArticleSectionTextView.setText(articleSection);
+        ArticleSectionTextView.setText("Found under section: " + articleSection);
+        ArticleDateTextView.setText("Published on " + articleDate);
 
         return listItemView;
     }

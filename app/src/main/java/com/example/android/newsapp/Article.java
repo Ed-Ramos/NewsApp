@@ -15,10 +15,14 @@ public class Article {
     /** Website URL of the article */
     private String mWebUrl;
 
-    public Article(String WebTitle, String SectionName, String WebUrl) {
+    /** Web publication date the article */
+    private String mWebPublicationDate;
+
+    public Article(String WebTitle, String SectionName, String WebUrl, String WebPublicationDate) {
         mWebTitle = WebTitle;
         mSectionName = SectionName;
         mWebUrl = WebUrl;
+        mWebPublicationDate = WebPublicationDate;
     }
 
 
@@ -33,4 +37,9 @@ public class Article {
     public String getWebUrl() {
         return mWebUrl;
     }
+
+    public String getWebPublicationDate() {
+        return mWebPublicationDate;
+    }
+
 }

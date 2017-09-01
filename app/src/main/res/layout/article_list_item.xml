@@ -30,4 +30,15 @@
         android:textStyle="italic"
         tools:text="Article Section" />
 
+    <TextView
+        android:id="@+id/article_date_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/textColorArticleTitle"
+        android:textSize="14sp"
+        android:textStyle="italic"
+        tools:text="Article Date" />
+
+
+
 </LinearLayout>
