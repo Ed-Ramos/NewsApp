@@ -83,6 +83,10 @@ public final class QueryUtils {
 
                 String webPublicationDate;
 
+                JSONArray tags = currentArticle.getJSONArray("tags");
+
+                String webAuthor = "";
+
                 if (currentArticle.has("webPublicationDate")) {
 
                     webPublicationDate = currentArticle.getString("webPublicationDate");
@@ -93,9 +97,34 @@ public final class QueryUtils {
                     webPublicationDate = " Unknown";
                 }
 
+
+                if (tags.length() != 0) {
+
+                    for (int j = 0; j < tags.length(); j++) {
+
+                        JSONObject tagsObject = tags.getJSONObject(j);
+
+
+                       if (j != tags.length() - 1) {
+
+                        webAuthor = webAuthor + tagsObject.getString("webTitle") + " and ";
+
+                       } else {
+                           webAuthor = webAuthor + tagsObject.getString("webTitle");
+
+                       }
+
+                    } //End tags.length iteration
+
+                } else {
+
+                    webAuthor = " Unknown author";
+                }
+
+
                 // Create a new {@link Article} object with the webtitle and sectionName
                 // from the JSON response.
-                Article article = new Article(webTitle, sectionName, webUrl, webPublicationDate);
+                Article article = new Article(webTitle, sectionName, webUrl, webPublicationDate, webAuthor);
 
                 // Add the new {@link Article} to the list of articles.
                 articles.add(article);

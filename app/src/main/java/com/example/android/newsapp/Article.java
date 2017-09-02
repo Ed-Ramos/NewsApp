@@ -18,11 +18,16 @@ public class Article {
     /** Web publication date the article */
     private String mWebPublicationDate;
 
-    public Article(String WebTitle, String SectionName, String WebUrl, String WebPublicationDate) {
+    /** Web author of the article */
+    private String mWebAuthor;
+
+
+    public Article(String WebTitle, String SectionName, String WebUrl, String WebPublicationDate, String WebAuthor) {
         mWebTitle = WebTitle;
         mSectionName = SectionName;
         mWebUrl = WebUrl;
         mWebPublicationDate = WebPublicationDate;
+        mWebAuthor = WebAuthor;
     }
 
 
@@ -40,6 +45,10 @@ public class Article {
 
     public String getWebPublicationDate() {
         return mWebPublicationDate;
+    }
+
+    public String getWebAuthor() {
+        return mWebAuthor;
     }
 
 }

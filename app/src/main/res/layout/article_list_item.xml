@@ -39,6 +39,15 @@
         android:textStyle="italic"
         tools:text="Article Date" />
 
+    <TextView
+        android:id="@+id/article_author_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/textColorArticleTitle"
+        android:textSize="14sp"
+        android:textStyle="italic"
+        tools:text="Article Date" />
+
 
 
 </LinearLayout>
