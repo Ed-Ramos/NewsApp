@@ -18,16 +18,10 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Edwin on 8/31/2017.
- */
-
 
 public final class QueryUtils {
 
-
     private static final String LOG_TAG = ArticleActivity.class.getName();
-
 
     /**
      * Create a private constructor because no one should ever create a {@link QueryUtils} object.
@@ -36,7 +30,6 @@ public final class QueryUtils {
      */
     private QueryUtils() {
     }
-
 
     /**
      * Return a list of {@link Article} objects that has been built up from
@@ -48,9 +41,8 @@ public final class QueryUtils {
             return null;
         }
 
-        // Create an empty ArrayList that we can start adding books to
+        // Create an empty ArrayList that we can start adding articles to
         List<Article> articles = new ArrayList<>();
-
 
         // Try to parse the JSON response string. If there's a problem with the way the JSON
         // is formatted, a JSONException exception object will be thrown.
@@ -69,7 +61,7 @@ public final class QueryUtils {
 
             for (int i = 0; i < articleResultsArray.length(); i++) {
 
-               // Get a single article at position i within the list of articles
+                // Get a single article at position i within the list of articles
                 JSONObject currentArticle = articleResultsArray.getJSONObject(i);
 
                 // Extract the value for the key called "webTitle"
@@ -83,13 +75,19 @@ public final class QueryUtils {
 
                 String webPublicationDate;
 
+                String webPublicationDateAndTime;
+
                 JSONArray tags = currentArticle.getJSONArray("tags");
 
                 String webAuthor = "";
 
+                //Check to see if there is a publication date. if so, extract it
+                //separate out just the date portion
+
                 if (currentArticle.has("webPublicationDate")) {
 
-                    webPublicationDate = currentArticle.getString("webPublicationDate");
+                    webPublicationDateAndTime = currentArticle.getString("webPublicationDate");
+                    webPublicationDate = webPublicationDateAndTime.substring(0, 10);
 
 
                 } else {
@@ -97,22 +95,22 @@ public final class QueryUtils {
                     webPublicationDate = " Unknown";
                 }
 
-
+                // check to see if tags key is empty
                 if (tags.length() != 0) {
 
                     for (int j = 0; j < tags.length(); j++) {
 
                         JSONObject tagsObject = tags.getJSONObject(j);
 
+                        // if not last author, then add word "and" between authors
+                        if (j != tags.length() - 1) {
 
-                       if (j != tags.length() - 1) {
+                            webAuthor = webAuthor + tagsObject.getString("webTitle") + " and ";
 
-                        webAuthor = webAuthor + tagsObject.getString("webTitle") + " and ";
+                        } else {
+                            webAuthor = webAuthor + tagsObject.getString("webTitle");
 
-                       } else {
-                           webAuthor = webAuthor + tagsObject.getString("webTitle");
-
-                       }
+                        }
 
                     } //End tags.length iteration
 
@@ -122,15 +120,14 @@ public final class QueryUtils {
                 }
 
 
-                // Create a new {@link Article} object with the webtitle and sectionName
-                // from the JSON response.
+                // Create a new {@link Article} object with the webtitle,sectionName,webPublicationDate
+                //and webAuthor from the JSON response.
                 Article article = new Article(webTitle, sectionName, webUrl, webPublicationDate, webAuthor);
 
                 // Add the new {@link Article} to the list of articles.
                 articles.add(article);
 
-                } //End of articleResultsArray iteration
-
+            } //End of articleResultsArray iteration
 
         } catch (JSONException e) {
             // If an error is thrown when executing any of the above statements in the "try" block,
@@ -240,6 +237,5 @@ public final class QueryUtils {
         // Return the list of {@link Article}s
         return articles;
     }
-
 
 }//End of QueryUtils class

@@ -7,10 +7,6 @@ import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 
-/**
- * Created by Edwin on 8/31/2017.
- */
-
 public class SettingsActivity extends AppCompatActivity {
 
     @Override
@@ -25,7 +21,6 @@ public class SettingsActivity extends AppCompatActivity {
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.settings_main);
-
             Preference maxPages = findPreference(getString(R.string.settings_max_pages_key));
             bindPreferenceSummaryToValue(maxPages);
         }

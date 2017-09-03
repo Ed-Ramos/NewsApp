@@ -24,7 +24,6 @@ import java.util.List;
 public class ArticleActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<Article>> {
 
 
-
     /**
      * URL for article data from the guardian site
      */
@@ -83,7 +82,7 @@ public class ArticleActivity extends AppCompatActivity implements LoaderManager.
         ConnectivityManager connMgr = (ConnectivityManager)
                 getSystemService(Context.CONNECTIVITY_SERVICE);
 
-         // Get details on the currently active default data network
+        // Get details on the currently active default data network
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
 
         mEmptyStateTextView = (TextView) findViewById(R.id.empty_view);
@@ -120,7 +119,6 @@ public class ArticleActivity extends AppCompatActivity implements LoaderManager.
                 getString(R.string.settings_max_pages_key),
                 getString(R.string.settings_max_pages_default));
 
-
         Uri baseUri = Uri.parse(GUARDIAN_REQUEST_URL);
         Uri.Builder uriBuilder = baseUri.buildUpon();
 
@@ -131,7 +129,6 @@ public class ArticleActivity extends AppCompatActivity implements LoaderManager.
 
         return new ArticleLoader(this, uriBuilder.toString());
     }
-
 
     @Override
     public void onLoadFinished(Loader<List<Article>> loader, List<Article> articles) {
@@ -146,7 +143,7 @@ public class ArticleActivity extends AppCompatActivity implements LoaderManager.
         // Clear the adapter of previous earthquake data
         mAdapter.clear();
 
-        // If there is a valid list of {@link Earthquake}s, then add them to the adapter's
+        // If there is a valid list of {@link Article}s, then add them to the adapter's
         // data set. This will trigger the ListView to update.
         if (articles != null && !articles.isEmpty()) {
             mAdapter.addAll(articles);

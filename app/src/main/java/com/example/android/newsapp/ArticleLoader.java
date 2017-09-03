@@ -1,32 +1,32 @@
 package com.example.android.newsapp;
 
-/**
- * Created by Edwin on 8/31/2017.
- */
-
 import android.content.AsyncTaskLoader;
 import android.content.Context;
 
 import java.util.List;
 
 /**
- * Loads a list of articless by using an AsyncTask to perform the
+ * Loads a list of articles by using an AsyncTask to perform the
  * network request to the given URL.
  */
 
 public class ArticleLoader extends AsyncTaskLoader<List<Article>> {
 
-    /** Tag for log messages */
+    /**
+     * Tag for log messages
+     */
     private static final String LOG_TAG = ArticleLoader.class.getName();
 
-    /** Query URL */
+    /**
+     * Query URL
+     */
     private String mUrl;
 
     /**
      * Constructs a new {@link ArticleLoader}.
      *
      * @param context of the activity
-     * @param url to load data from
+     * @param url     to load data from
      */
     public ArticleLoader(Context context, String url) {
         super(context);
@@ -51,9 +51,5 @@ public class ArticleLoader extends AsyncTaskLoader<List<Article>> {
         List<Article> articles = QueryUtils.fetchArticleData(mUrl);
         return articles;
     }
-
-
-
-
 
 }

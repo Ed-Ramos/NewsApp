@@ -15,7 +15,7 @@
 
 
     <!-- Strings For Maximum Pages Preference [CHAR LIMIT=30] -->
-    <string name="settings_max_pages_label">Maximum Pages</string>
+    <string name="settings_max_pages_label">Maximum # of articles</string>
     <string name="settings_max_pages_key" translatable="false">max_pages</string>
     <string name="settings_max_pages_default" translatable="false">15</string>
 
